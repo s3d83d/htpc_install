@@ -19,7 +19,9 @@ To run, you can try the following scenarios:
 
 **To install just Couchpotato**
 > sudo ./install.sh -c
-> or
+
+or
+
 > sudo ./install.sh --couchpotato
 
 
