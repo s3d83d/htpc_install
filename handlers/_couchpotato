@@ -13,23 +13,33 @@ function _couchpotato_install(){
 	## They recommend taking ownership with a user. I'm leaving root ownership for now.
 	#chown -R ${USER}:${USER} /opt/couchpotato
 
-	## They provide a default file. I'm using a pre-built for now
-	cp /opt/couchpotato/init/ubuntu.default /etc/default/couchpotato
+	## They provide a default file for defaults. I will one with values added in post config (leaving for brevity)
+	# cp /opt/couchpotato/init/ubuntu.default /etc/default/couchpotato
 
+    ## Adding init scripts
 	cp /opt/couchpotato/init/ubuntu /etc/init.d/couchpotato
 
+	## Making scripts executable
 	chmod +x /etc/init.d/couchpotato
 
+	## Adding couchpotato to system startup
 	update-rc.d couchpotato defaults
-
-	service couchpotato start
 }
 
 function _couchpotato_postconfig(){
-	service couchpotato stop
+	## Adding default configuration
 	cp -f configs/couchpotato/couchpotato /etc/default/
+
+	## Starting couchpotato
+	service couchpotato start
+
+	## Stopping couchpotato
+	service couchpotato stop
+
+	## Adding url base "movies" for proxy handling
     sed -i "s|`grep url_base /opt/couchpotato/settings.conf`|url_base = movies|g" /opt/couchpotato/settings.conf
 
+	## Starting couchpotato
 	service couchpotato start
 }
 
