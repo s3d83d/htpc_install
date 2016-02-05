@@ -12,7 +12,7 @@
 
 ## Variables
 if [ -f /etc/os-release ]; then
-	os_fam=`cat /etc/os-release | grep -ie "\<name\>" | awk -F"\"" '{print $2}'
+	os_fam=`cat /etc/os-release | grep -ie "\<name\>" | awk -F"\"" '{print $2}'`
 	os_ver=`lsb_release -a | grep -i release | awk '{print $2}'`
 fi
 current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
