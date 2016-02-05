@@ -119,6 +119,6 @@ done
 
 #_post_config
 
-sudo reboot
+#sudo reboot
 
 ## Script End
