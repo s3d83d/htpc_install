@@ -59,7 +59,7 @@ do
 			break
 			;;
 		-h|--htpc)
-			sudo $modules_dir/htpc.sh
+			sudo $modules_dir/htpcmanager.sh
 			break
 			;;
 		-p|--plex)
