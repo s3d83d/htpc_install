@@ -25,6 +25,8 @@ function _usage(){
 }
 
 function _run_all(){
+	sudo cp -f $current_dir/configs/sonarr/nzbdrone /etc/init.d/
+    sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
 	for i in `ls $modules_dir`
 	do
 		sudo $modules_dir/$i
@@ -68,10 +70,12 @@ do
 			break
 			;;
 		-s|--sonarr)
+			sudo cp -f $current_dir/configs/sonarr/nzbdrone /etc/init.d/
 			sudo $modules_dir/sonarr.sh
 			break
 			;;
 		-c|--couchpotato)
+			sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
 			sudo $modules_dir/couchpotato.sh
 			break
 			;;
@@ -89,5 +93,7 @@ do
 			;;
 	esac
 done
+
+sudo reboot
 
 ## Script End

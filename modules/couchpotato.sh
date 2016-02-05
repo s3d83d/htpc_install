@@ -14,9 +14,6 @@ sudo git clone https://github.com/RuudBurger/CouchPotatoServer /opt/couchpotato
 ## They provide a default file. I'm using a pre-built for now
 #sudo cp /opt/couchpotato/init/ubuntu.default /etc/default/couchpotato
 
-## This step isn't working yet
-sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
-
 sudo cp /opt/couchpotato/init/ubuntu /etc/init.d/couchpotato
 
 sudo chmod +x /etc/init.d/couchpotato
