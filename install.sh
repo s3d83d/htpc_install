@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Install HTPC Server with the following applications:
-#
-#    1. HTPC Manager
-#    2. Plex
-#    3. Sonarr/NZBDrone
-#    4. CouchPotato
-#    5. NZBGet
-#    6. Apache
-# 
-
 ## Variables
 if [ -f /etc/os-release ]; then
 	os_fam=`cat /etc/os-release | grep -ie "\<name\>" | awk -F"\"" '{print $2}'`
