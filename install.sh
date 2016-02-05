@@ -9,6 +9,8 @@ export current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 export modules_dir=$current_dir/modules
 
 ## Functions
+. ${current_dir}/handlers/*
+
 function _usage(){
 	echo -e "\nsudo ${current_dir}/install.sh [ -A --all ] [ -h --htpc | -p --plex | -s --sonarr | -c --couchpotato | -n --nzbget | -a --apache ]\n"
 	exit 1
@@ -93,8 +95,10 @@ do
 			break
 			;;
 		-c|--couchpotato)
-			sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
-			sudo $modules_dir/couchpotato.sh
+            _couchpotato_install
+            _couchpotato_postconfig
+			#sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
+			#sudo $modules_dir/couchpotato.sh
 			break
 			;;
 		-n|--nzbget)
