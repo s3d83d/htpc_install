@@ -26,6 +26,8 @@ function _usage(){
 
 function _run_all(){
 	sudo cp -f $current_dir/configs/sonarr/nzbdrone /etc/init.d/
+    sudo cp -f $current_dir/configs/nzbget/nzbget /etc/init.d/
+    sudo cp -f $current_dir/configs/apache/default.conf /etc/apache2/sites-available/
     sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
 	for i in `ls $modules_dir`
 	do
@@ -80,6 +82,7 @@ do
 			break
 			;;
 		-n|--nzbget)
+            sudo cp -f $current_dir/configs/nzbget/nzbget /etc/init.d/
 			sudo $modules_dir/nzbget.sh
 			break
 			;;
