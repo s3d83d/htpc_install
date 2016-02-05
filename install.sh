@@ -22,7 +22,7 @@ function _usage(){
 	echo -e "\nsudo ${current_dir}/install.sh [ complete ] [ htpc | plex | nzbdrone | couchpotato | nzbget | apache ]\n"
 }
 ## Fact Checking
-if [ `whoami` != 'root']; then
+if [ `whoami` != 'root' ]; then
 	echo -e "\nYou must run with root privileges (i.e. sudo)"
 	_usage
 fi
