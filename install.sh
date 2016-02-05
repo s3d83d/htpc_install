@@ -60,27 +60,27 @@ do
 			;;
 		-h|--htpc)
 			sudo $modules_dir/htpc.sh
-			break
+			shift 1
 			;;
 		-p|--plex)
 			sudo $modules_dir/plex.sh
-			break
+			shift 2
 			;;
 		-s|--sonarr)
 			sudo $modules_dir/sonarr.sh
-			break
+			shift 3
 			;;
 		-c|--couchpotato)
 			sudo $modules_dir/couchpotato.sh
-			break
+			shift 4
 			;;
 		-n|--nzbget)
 			sudo $modules_dir/nzbget.sh
-			break
+			shift 5
 			;;
 		-a|--apache)
 			sudo $modules_dir/apache.sh
-			break
+			shift 6
 			;;
 		*)
 			_usage
