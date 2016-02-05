@@ -19,3 +19,6 @@ sudo cp /opt/couchpotato/init/ubuntu /etc/init.d/couchpotato
 sudo chmod +x /etc/init.d/couchpotato
 
 sudo update-rc.d couchpotato defaults
+
+## Set url_base for apache reverse proxy
+sudo sed -i "s|`grep url_base /opt/couchpotato/settings.conf`|url_base = movies|g" /opt/couchpotato/settings.conf
