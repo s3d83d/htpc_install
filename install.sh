@@ -4,7 +4,7 @@
 #
 #    1. HTPC Manager
 #    2. Plex
-#    3. NZBDrone/Sonarr
+#    3. Sonarr/NZBDrone
 #    4. CouchPotato
 #    5. NZBGet
 #    6. Apache
@@ -16,10 +16,10 @@ if [ -f /etc/os-release ]; then
 	os_ver=`cat /etc/os-release | grep -ie "\<version\>" | awk -F"\"" '{print $2}' | awk '{print $1}'`
 fi
 current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
-
+modules_dir=$current_dir/modules
 ## Functions
 function _usage(){
-	echo -e "\nsudo ${current_dir}/install.sh [ complete ] [ htpc | plex | nzbdrone | couchpotato | nzbget | apache ]\n"
+	echo -e "\nsudo ${current_dir}/install.sh [ -A --all ] [ -h --htpc | -p --plex | -s --sonarr | -c --couchpotato | -n --nzbget | -a --apache ]\n"
 }
 ## Fact Checking
 if [ `whoami` != 'root' ]; then
@@ -39,3 +39,41 @@ if [ "${os_fam,,}" != 'ubuntu' ] && [ "${os_ver}" != '14.04']; then
 fi
 
 ## Script Begin
+params="$(getopt -o Ahpscna -l all,htpc,plex,sonarr,couchpotato,nzbget,apache --name "$0" -- "$@")"
+eval set -- "$params"
+
+while true
+do
+	case "$1" in
+		-A|--all)
+			for i in `ls $modules_dir`
+			do
+				sudo $i
+			done
+			;;
+		-h|--htpc)
+			sudo $modules_dir/htpc.sh
+			;;
+		-p|--plex)
+			sudo $modules_dir/plex.sh
+			;;
+		-s|--sonarr)
+			sudo $modules_dir/sonarr.sh
+			;;
+		-c|--couchpotato)
+			sudo $modules_dir/couchpotato.sh
+			;;
+		-n|--nzbget)
+			sudo $modules_dir/nzbget.sh
+			;;
+		-a|--apache)
+			sudo $modules_dir/apache.sh
+			;;
+		*)
+			_usage
+			exit 1
+			;;
+	esac
+done
+
+## Script End
