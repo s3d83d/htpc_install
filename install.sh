@@ -121,7 +121,7 @@ do
 	esac
 done
 
-_post_config
+#_post_config
 
 sudo reboot
 

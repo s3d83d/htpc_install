@@ -25,5 +25,6 @@ function _couchpotato_install(){
 
 function _couchpotato_postconfig(){
 	cp -f configs/couchpotato/couchpotato /etc/default/
+    sed -i "s|`grep url_base /opt/couchpotato/settings.conf`|url_base = movies|g" /opt/couchpotato/settings.conf
 }
 
