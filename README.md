@@ -14,10 +14,10 @@ For now I am just following guides from http://www.htpcguides.com
 
 To run, you can try the following scenarios:
 
-*** To install everything ***
+** To install everything **
 > sudo ./install.sh -A
 
-*** To install just Couchpotato ***
+** To install just Couchpotato **
 > sudo ./install.sh -c
 > or
 > sudo ./install.sh --couchpotato
