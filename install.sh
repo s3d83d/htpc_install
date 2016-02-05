@@ -24,7 +24,7 @@ function _usage(){
 }
 
 function _run_all(){
-	for i in $modules_dir
+	for i in `ls $modules_dir`
 	do
 		sudo $modules_dir/$i
 	done
@@ -60,21 +60,27 @@ do
 			;;
 		-h|--htpc)
 			sudo $modules_dir/htpc.sh
+			break
 			;;
 		-p|--plex)
 			sudo $modules_dir/plex.sh
+			break
 			;;
 		-s|--sonarr)
 			sudo $modules_dir/sonarr.sh
+			break
 			;;
 		-c|--couchpotato)
 			sudo $modules_dir/couchpotato.sh
+			break
 			;;
 		-n|--nzbget)
 			sudo $modules_dir/nzbget.sh
+			break
 			;;
 		-a|--apache)
 			sudo $modules_dir/apache.sh
+			break
 			;;
 		*)
 			_usage
