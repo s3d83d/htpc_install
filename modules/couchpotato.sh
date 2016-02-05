@@ -1,7 +1,5 @@
 #!/bin/bash
 
-current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
-
 echo "Installing CouchPotato..."
 
 sudo apt-get install git-core libffi-dev libssl-dev zlib1g-dev libxslt1-dev libxml2-dev python python-pip python-dev build-essential -y
@@ -16,6 +14,7 @@ sudo git clone https://github.com/RuudBurger/CouchPotatoServer /opt/couchpotato
 ## They provide a default file. I'm using a pre-built for now
 #sudo cp /opt/couchpotato/init/ubuntu.default /etc/default/couchpotato
 
+## This step isn't working yet
 sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
 
 sudo cp /opt/couchpotato/init/ubuntu /etc/init.d/couchpotato

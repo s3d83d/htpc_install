@@ -15,8 +15,8 @@ if [ -f /etc/os-release ]; then
 	os_fam=`cat /etc/os-release | grep -ie "\<name\>" | awk -F"\"" '{print $2}'`
 	os_ver=`cat /etc/os-release | grep -ie "\<version\>" | awk -F"\"" '{print $2}' | awk '{print $1}'`
 fi
-current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
-modules_dir=$current_dir/modules
+export current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+export modules_dir=$current_dir/modules
 
 ## Functions
 function _usage(){
