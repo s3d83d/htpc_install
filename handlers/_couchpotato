@@ -21,10 +21,15 @@ function _couchpotato_install(){
 	chmod +x /etc/init.d/couchpotato
 
 	update-rc.d couchpotato defaults
+
+	service couchpotato start
 }
 
 function _couchpotato_postconfig(){
+	service couchpotato stop
 	cp -f configs/couchpotato/couchpotato /etc/default/
     sed -i "s|`grep url_base /opt/couchpotato/settings.conf`|url_base = movies|g" /opt/couchpotato/settings.conf
+
+	service couchpotato start
 }
 

@@ -28,7 +28,7 @@ function _post_config(){
     do
         sudo service $i stop
     done
-    
+
     ### Sonarr Post Config ###
 	sudo cp -f $current_dir/configs/sonarr/nzbdrone /etc/init.d/
     sudo cp -f $current_dir/configs/sonarr/config.xml /root/.config/NzbDrone/
@@ -37,7 +37,7 @@ function _post_config(){
     sudo cp -f $current_dir/configs/nzbget/nzbget /etc/init.d/
 
     ### Apache Post Config ###
-    sudo cp -f $current_dir/configs/apache/default.conf /etc/apache2/sites-available/    
+    sudo cp -f $current_dir/configs/apache/default.conf /etc/apache2/sites-available/
     sudo sed -i "s|`grep -i servername /etc/apache2/sites-available/default.conf | awk '{print $2}'`|${myip}|g" /etc/apache2/sites-available/default.conf
     sudo a2ensite default.conf
     sudo service apache2 reload
@@ -46,10 +46,6 @@ function _post_config(){
     ## This is a hack for now. I cannot find where this setting is stored, so I'm substituting the default value in the python launcher script
     sudo sed -i "s|`grep -e "--webdir" /opt/HTPCManager/Htpc.py | awk '{print $2}'`|default=\"/htpc\",|g" /opt/HTPCManager/Htpc.py
 
-    ### Couchpotato Post Config ###
-    sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
-    ## Set url_base for apache reverse proxy
-    sudo sed -i "s|`grep url_base /opt/couchpotato/settings.conf`|url_base = movies|g" /opt/couchpotato/settings.conf
 }
 
 ## Fact Checking
