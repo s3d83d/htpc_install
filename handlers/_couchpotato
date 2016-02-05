@@ -36,8 +36,11 @@ function _couchpotato_postconfig(){
 	## Stopping couchpotato
 	service couchpotato stop
 
+	## Give service time to stop
+	sleep 2
+
 	## Adding url base "movies" for proxy handling
-    sed -i "s|`grep url_base /opt/couchpotato/settings.conf`|url_base = movies|g" /opt/couchpotato/settings.conf
+	cp -f configs/couchpotato/settings.conf /opt/couchpotato/settings.conf
 
 	## Starting couchpotato
 	service couchpotato start
