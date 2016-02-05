@@ -2,33 +2,28 @@
 
 function _couchpotato_install(){
 	## Install system dependencies
-	sudo apt-get install git-core libffi-dev libssl-dev zlib1g-dev libxslt1-dev libxml2-dev python python-pip python-dev build-essential -y
+	apt-get install git-core libffi-dev libssl-dev zlib1g-dev libxslt1-dev libxml2-dev python python-pip python-dev build-essential -y
 
 	## Install python dependencies
-	sudo pip install lxml cryptography pyopenssl
+	pip install lxml cryptography pyopenssl
 
 	## Pull down Couchpotato repository
-	sudo git clone https://github.com/RuudBurger/CouchPotatoServer /opt/couchpotato
+	git clone https://github.com/RuudBurger/CouchPotatoServer /opt/couchpotato
 
 	## They recommend taking ownership with a user. I'm leaving root ownership for now.
-	sudo chown -R ${USER}:${USER} /opt/couchpotato
+	#chown -R ${USER}:${USER} /opt/couchpotato
 
 	## They provide a default file. I'm using a pre-built for now
-	sudo cp /opt/couchpotato/init/ubuntu.default /etc/default/couchpotato
+	cp /opt/couchpotato/init/ubuntu.default /etc/default/couchpotato
 
-	sudo cp /opt/couchpotato/init/ubuntu /etc/init.d/couchpotato
+	cp /opt/couchpotato/init/ubuntu /etc/init.d/couchpotato
 
-	sudo chmod +x /etc/init.d/couchpotato
+	chmod +x /etc/init.d/couchpotato
 
-	sudo update-rc.d couchpotato defaults
+	update-rc.d couchpotato defaults
 }
 
 function _couchpotato_postconfig(){
-	_cp_def=/etc/default/couchpotato
-	_cp_dir=/opt/couchpotato
-	_cp_pid=/var/run/couchpotato.pid
-	sudo sed -i "s|`grep CP_USER ${_cp_def}`|CP_USER=${USER}|g"	$_cd_def
-	sudo sed -i "s|`grep CP_data ${_cp_def}`|CP_DATA=${_cp_dir}|g" $_cp_def
-	sudo sed -i "s|`grep CP_HOME ${_cp_def}`|CP_HOME=${_cp_dir}|g" $_cp_def
-	sudo sed -i "s|`grep CP_PIDFILE ${_cp_def}`|CP_PIDFILE=$_cp_pid}|g" $_cp_def
+	cp -f configs/couchpotato/couchpotato /etc/default/
 }
+
