@@ -22,6 +22,14 @@ function _usage(){
 	echo -e "\nsudo ${current_dir}/install.sh [ -A --all ] [ -h --htpc | -p --plex | -s --sonarr | -c --couchpotato | -n --nzbget | -a --apache ]\n"
 	exit 1
 }
+
+function _run_all(){
+	for i in $modules_dir
+	do
+		sudo $modules_dir/$i
+	done
+}
+
 ## Fact Checking
 if [ `whoami` != 'root' ]; then
 	echo -e "\nYou must run with root privileges (i.e. sudo)"
@@ -47,10 +55,8 @@ while true
 do
 	case "$1" in
 		-A|--all)
-			for i in `ls $modules_dir`
-			do
-				sudo $modules_dir/$i
-			done
+			_run_all
+			break
 			;;
 		-h|--htpc)
 			sudo $modules_dir/htpc.sh
