@@ -13,7 +13,7 @@
 ## Variables
 if [ -f /etc/os-release ]; then
 	os_fam=`cat /etc/os-release | grep -ie "\<name\>" | awk -F"\"" '{print $2}'`
-	os_ver=`lsb_release -a | grep -i release | awk '{print $2}'`
+	os_ver=`cat /etc/os-release | grep -ie "\<version\>" | awk -F"\"" '{print $2}' | awk '{print $1}'`
 fi
 current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
@@ -31,7 +31,7 @@ if [ "${os_fam,,}" != 'ubuntu' ] && [ "${os_ver}" != '14.04']; then
 	read -p "This script was tested on Ubuntu 14.04. Your version [${os_fam} ${os_ver}] has not been verified to work with this script. Do you wish to continue? (y/n)" y
 	case $yn in
 		[Yy]* ) break;;
-		[Nn]* ) 
+		[Nn]* )
 			exit 1
 		;;
 		* ) echo "Plese answer y or n.";;
