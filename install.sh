@@ -17,6 +17,7 @@ if [ -f /etc/os-release ]; then
 fi
 current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 modules_dir=$current_dir/modules
+
 ## Functions
 function _usage(){
 	echo -e "\nsudo ${current_dir}/install.sh [ -A --all ] [ -h --htpc | -p --plex | -s --sonarr | -c --couchpotato | -n --nzbget | -a --apache ]\n"

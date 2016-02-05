@@ -1,0 +1,7 @@
+# COPY THIS FILE TO /etc/default/couchpotato 
+# OPTIONS: CP_HOME, CP_USER, CP_DATA, CP_PIDFILE, PYTHON_BIN, CP_OPTS, SSD_OPTS
+
+CP_HOME=/opt/couchpotato
+CP_DATA=/opt/couchpotato
+CP_USER=root
+CP_PIDFILE=/root/.couchpotato.pid
