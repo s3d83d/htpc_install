@@ -20,6 +20,7 @@ modules_dir=$current_dir/modules
 ## Functions
 function _usage(){
 	echo -e "\nsudo ${current_dir}/install.sh [ -A --all ] [ -h --htpc | -p --plex | -s --sonarr | -c --couchpotato | -n --nzbget | -a --apache ]\n"
+	exit 1
 }
 ## Fact Checking
 if [ `whoami` != 'root' ]; then
@@ -48,7 +49,7 @@ do
 		-A|--all)
 			for i in `ls $modules_dir`
 			do
-				sudo $i
+				sudo $modules_dir/$i
 			done
 			;;
 		-h|--htpc)
