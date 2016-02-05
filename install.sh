@@ -24,6 +24,7 @@ function _run_all(){
 	do
 		sudo $modules_dir/$i
 	done
+    sudo cp -f $current_dir/configs/sonarr/config.xml /root/.config/NzbDrone/
 }
 
 ## Fact Checking
@@ -65,6 +66,7 @@ do
 		-s|--sonarr)
 			sudo cp -f $current_dir/configs/sonarr/nzbdrone /etc/init.d/
 			sudo $modules_dir/sonarr.sh
+            sudo cp -f $current_dir/configs/sonarr/config.xml /root/.config/NzbDrone/
 			break
 			;;
 		-c|--couchpotato)

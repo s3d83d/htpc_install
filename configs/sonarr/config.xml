@@ -1,0 +1,13 @@
+<Config>
+  <Port>8989</Port>
+  <UrlBase>nzbdrone</UrlBase>
+  <BindAddress>*</BindAddress>
+  <SslPort>9898</SslPort>
+  <EnableSsl>False</EnableSsl>
+  <ApiKey>61a0ba0eaa21434f8452f6aea68a16a5</ApiKey>
+  <AuthenticationMethod>None</AuthenticationMethod>
+  <LogLevel>Info</LogLevel>
+  <Branch>master</Branch>
+  <LaunchBrowser>True</LaunchBrowser>
+</Config>
+
