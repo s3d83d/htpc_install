@@ -1,5 +1,7 @@
 #!/bin/bash
 
+current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
 echo "Installing CouchPotato..."
 
 sudo apt-get install git-core libffi-dev libssl-dev zlib1g-dev libxslt1-dev libxml2-dev python python-pip python-dev build-essential -y
