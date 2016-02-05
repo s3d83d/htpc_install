@@ -15,6 +15,7 @@ function _usage(){
 }
 
 function _run_all(){
+    sudo mkdir -p /etc/apache2/sites-available
 	sudo cp -f $current_dir/configs/sonarr/nzbdrone /etc/init.d/
     sudo cp -f $current_dir/configs/nzbget/nzbget /etc/init.d/
     sudo cp -f $current_dir/configs/apache/default.conf /etc/apache2/sites-available/
