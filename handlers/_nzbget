@@ -30,5 +30,6 @@ function _nzbget_install(){
 }
 
 function _nzbget_postconfig(){
-	## No postconfigs yet
+	## Start NZBGet
+	service nzbget start
 }

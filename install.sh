@@ -50,6 +50,7 @@ do
 			;;
 		-n|--nzbget)
             _nzbget_install
+            _nzbget_postconfig
 			break
 			;;
 		-a|--apache)

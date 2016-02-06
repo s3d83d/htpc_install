@@ -30,6 +30,15 @@ function _sonarr_install(){
 }
 
 function _sonarr_postconfig(){
+	## Starting Sonarr to create environment
+	service nzbdrone start
+
+	## Stopping Sonarr to add config
+	service nzbdrone stop
+
+	## Wait for service to stop
+	sleep 3
+	
 	## Add adjusted config to system
     cp -f configs/sonarr/config.xml /root/.config/NzbDrone/
 }
