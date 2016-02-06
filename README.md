@@ -33,13 +33,24 @@ If you chose to install all applications, apache will proxy your connections mak
 
 | Application | URL |
 | ----------- | --- |
-| HTPC Manager | http://serverIP/htpc |
-| Plex | http://serverIP/web |
-| Sonarr | http://serverIP/nzbdrone |
-| CouchPotato | http://serverIP/movies |
-| NZBget | http://serverIP//nzbget |
+| HTPC Manager | http://ip.address/htpc |
+| Plex | http://ip.address/web |
+| Sonarr | http://ip.address/nzbdrone |
+| CouchPotato | http://ip.address/movies |
+| NZBget | http://ip.address//nzbget |
+
+If you install applications singularly and/or you do not install apache, you can make connection to these urls:
+
+| Application | URL |
+| ----------- | --- |
+| HTPC Manager | http://ip.address:8085/htpc |
+| Plex | http://ip.address:32400/web |
+| Sonarr | http://ip.address:8989/nzbdrone |
+| CouchPotato | http://ip.address:5050/movies |
+| NZBget | http://ip.address:6789//nzbget |
 
 NZBGet ships with a default username and password. You can change it after logging in.
+
 | Username | Password |
 | -------- | -------- |
 | nzbget | tegbzn6789 |
