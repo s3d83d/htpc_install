@@ -11,18 +11,6 @@ export modules_dir=$current_dir/modules
 ## Functions
 . ${current_dir}/handlers/*
 
-function _usage(){
-	echo -e "\nsudo ${current_dir}/install.sh [ -A --all ] [ -h --htpc | -p --plex | -s --sonarr | -c --couchpotato | -n --nzbget | -a --apache ]\n"
-	exit 1
-}
-
-function _run_all(){
-	for i in `ls $modules_dir`
-	do
-		sudo $modules_dir/$i
-	done
-}
-
 function _post_config(){
     for i in couchpotato nzbget nzbdrone htpcmanager
     do
@@ -48,24 +36,12 @@ function _post_config(){
 
 }
 
-## Fact Checking
-if [ `whoami` != 'root' ]; then
-	echo -e "\nYou must run with root privileges (i.e. sudo)"
-	_usage
-fi
+### Fact Checking ###
+_verify_root
 
-if [ "${os_fam,,}" != 'ubuntu' ] && [ "${os_ver}" != '14.04']; then
-	read -p "This script was tested on Ubuntu 14.04. Your version [${os_fam} ${os_ver}] has not been verified to work with this script. Do you wish to continue? (y/n)" y
-	case $yn in
-		[Yy]* ) break;;
-		[Nn]* )
-			exit 1
-		;;
-		* ) echo "Plese answer y or n.";;
-	esac
-fi
+_verify_os
 
-## Script Begin
+### Script Begin ###
 params="$(getopt -o Ahpscna -l all,htpc,plex,sonarr,couchpotato,nzbget,apache --name "$0" -- "$@")"
 eval set -- "$params"
 
@@ -73,7 +49,7 @@ while true
 do
 	case "$1" in
 		-A|--all)
-			_run_all
+			_install_all
 			break
 			;;
 		-h|--htpc)
@@ -121,4 +97,4 @@ done
 
 #sudo reboot
 
-## Script End
+### Script End ###

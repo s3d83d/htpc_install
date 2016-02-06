@@ -1,0 +1,26 @@
+#!/bin/bash
+
+function _usage(){
+	echo -e "\nsudo ${current_dir}/install.sh [ -A --all ] [ -h --htpc | -p --plex | -s --sonarr | -c --couchpotato | -n --nzbget | -a --apache ]\n"
+	exit 1
+}
+
+function _verify_root(){
+	if [ `whoami` != 'root' ]; then
+		echo -e "\nYou must run with root privileges (i.e. sudo)"
+		_usage
+	fi
+}
+
+function _verify_os(){
+	if [ "${os_fam,,}" != 'ubuntu' ] && [ "${os_ver}" != '14.04']; then
+	read -p "This script was tested on Ubuntu 14.04. Your version [${os_fam} ${os_ver}] has not been verified to work with this script. Do you wish to continue? (y/n)" y
+		case $yn in
+			[Yy]* ) break;;
+			[Nn]* )
+				exit 1
+			;;
+			* ) echo "Plese answer y or n.";;
+		esac
+	fi
+}

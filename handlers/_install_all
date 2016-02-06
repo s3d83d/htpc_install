@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function _install_all(){
+	## Install CouchPotato
+	_couchpotato_install
+	_couchpotato_postconfig
+
+	## Install HTPC Manager
+
+	## Install Plex
+
+	## Install Sonarr
+
+	## Install NZBGet
+
+	## Install Apache
+	
+}

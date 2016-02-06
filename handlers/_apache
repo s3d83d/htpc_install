@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function _apache_install(){
+	## Install the latest apache2
+	apt-get install apache2 -y
+
+	## Enable required apache modules
+	a2enmod proxy proxy_ajp proxy_http rewrite deflate headers proxy_balancer proxy_connect proxy_html
+}
+
+function _apache_postconfig(){
+	local myip=$(ifconfig | grep -e "\<inet\>" | grep -v 127.0.0.1 | awk '{print $2}' | awk -F: '{print $2}')
+
+	## Copy a virtual host containing proxy declarations for all apps
+	cp -f configs/apache/default.conf /etc/apache2/sites-available/
+    
+	## Update virtual host with client IP
+    sed -i "s|`grep -i servername /etc/apache2/sites-available/default.conf | awk '{print $2}'`|${myip}|g" /etc/apache2/sites-available/default.conf
+    
+    ## Enable the virtual host
+    a2ensite default.conf
+
+    ## Reload the apache2 config with the new virtual host
+    service apache2 reload
+}
