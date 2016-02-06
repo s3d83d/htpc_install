@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function _nzbget_install(){
+	## Install dependencies
+	apt-get install unrar -y
+
+	## Add the NZBGet repository (makes future updating easy)
+	apt-add-repository ppa:modriscoll/nzbget -y
+
+	## Update repositories
+	apt-get update
+
+	## Install NZBGet from repo
+	apt-get install nzbget -y --force-yes
+
+	## Copy the default NZBGet configuration
+	cp -f /usr/share/nzbget/nzbget.conf /root/.nzbget
+
+	## They recommend taking ownership with a user. I'm leaving root ownership for now. (I plan to include a method to prompt for user in the future)
+	#chown user:user ~/.nzbget
+
+	## Add the init script to the system
+	cp -f configs/nzbget/nzbget /etc/init.d/
+
+	## Make init script executable
+	chmod +x /etc/init.d/nzbget
+
+	## Add NZBGet to system startup
+	update-rc.d nzbget defaults
+}
+
+function _nzbget_postconfig(){
+	## No postconfigs yet
+}

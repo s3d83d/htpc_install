@@ -1,0 +1,33 @@
+#!/bin/bash
+
+function _htpc_install(){
+	## Installing dependencies
+	apt-get install build-essential git python-imaging python-dev python-setuptools python-pip python-cherrypy vnstat -y
+
+	## Install python dependencies
+	pip install psutil
+
+	## Pull down HTPC Manager
+	git clone https://github.com/Hellowlol/HTPC-Manager /opt/HTPCManager
+
+	## They recommend taking ownership with a user. I'm leaving root ownership for now.
+	#chown -R user:user /opt/HTPCManager
+
+	## Add the init script to the system
+	cp /opt/HTPCManager/initscripts/initd /etc/init.d/htpcmanager
+
+	## Update the init script to point to /opt/HTPCManager
+	sed -i "s|`grep -i app_path /etc/init.d/htpcmanager | awk -F= '{print $2}'`|/opt/HTPCManager|g" /etc/init.d/htpcmanager
+
+	## Make the init script executable
+	chmod +x /etc/init.d/htpcmanager
+
+	## Make the init script execute at startup
+	update-rc.d htpcmanager defaults
+}
+
+function _htpc_postconfig(){
+    ## This is a hack for now. I cannot find where this setting is stored, so I'm substituting the default value in the python launcher script
+    ## Updates the web url root to /htpc
+    sudo sed -i "s|`grep -e "--webdir" /opt/HTPCManager/Htpc.py | awk '{print $2}'`|default=\"/htpc\",|g" /opt/HTPCManager/Htpc.py
+}

@@ -6,13 +6,20 @@ function _install_all(){
 	_couchpotato_postconfig
 
 	## Install HTPC Manager
+	_htpc_install
+	_htpc_postconfig
 
 	## Install Plex
+	_plex_install
 
 	## Install Sonarr
+	_sonarr_install
+	_sonarr_postconfig
 
 	## Install NZBGet
+	_nzbget_install
 
 	## Install Apache
-	
+	_apache_install
+	_apache_postconfig
 }

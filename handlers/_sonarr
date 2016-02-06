@@ -1,0 +1,35 @@
+#!/bin/bash
+
+function _sonarr_install(){
+	## Install dependencies
+	apt-get install apt-transport-https -y
+
+	## Add package key
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC
+
+	## Add repo
+	echo "deb https://apt.sonarr.tv/ master main" | tee -a /etc/apt/sources.list.d/sonarr.list
+
+	## Update repos
+	apt-get update
+
+	## Install Sonarr
+	apt-get install nzbdrone -y
+
+	## Remove the repo for future dependency problems
+	rm /etc/apt/sources.list.d/sonarr.list
+
+	## Add init script to system
+	cp -f configs/sonarr/nzbdrone /etc/init.d/
+
+	## Make the init script executable
+	chmod +x /etc/init.d/nzbdrone
+
+	## Add Sonarr to system startup
+	update-rc.d nzbdrone defaults
+}
+
+function _sonarr_postconfig(){
+	## Add adjusted config to system
+    cp -f configs/sonarr/config.xml /root/.config/NzbDrone/
+}
