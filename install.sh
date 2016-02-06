@@ -6,35 +6,12 @@ if [ -f /etc/os-release ]; then
 	os_ver=`cat /etc/os-release | grep -ie "\<version\>" | awk -F"\"" '{print $2}' | awk '{print $1}'`
 fi
 export current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
-export modules_dir=$current_dir/modules
 
-## Functions
-. ${current_dir}/handlers/*
-
-function _post_config(){
-    for i in couchpotato nzbget nzbdrone htpcmanager
-    do
-        sudo service $i stop
-    done
-
-    ### Sonarr Post Config ###
-	sudo cp -f $current_dir/configs/sonarr/nzbdrone /etc/init.d/
-    sudo cp -f $current_dir/configs/sonarr/config.xml /root/.config/NzbDrone/
-
-    ### NZBGet Post Config ###
-    sudo cp -f $current_dir/configs/nzbget/nzbget /etc/init.d/
-
-    ### Apache Post Config ###
-    sudo cp -f $current_dir/configs/apache/default.conf /etc/apache2/sites-available/
-    sudo sed -i "s|`grep -i servername /etc/apache2/sites-available/default.conf | awk '{print $2}'`|${myip}|g" /etc/apache2/sites-available/default.conf
-    sudo a2ensite default.conf
-    sudo service apache2 reload
-
-    ### HTPC Manager Post Config ###
-    ## This is a hack for now. I cannot find where this setting is stored, so I'm substituting the default value in the python launcher script
-    sudo sed -i "s|`grep -e "--webdir" /opt/HTPCManager/Htpc.py | awk '{print $2}'`|default=\"/htpc\",|g" /opt/HTPCManager/Htpc.py
-
-}
+## Source all of the handlers
+for i in `ls handlers`
+do
+	. handlers/$i
+done
 
 ### Fact Checking ###
 _verify_root
@@ -53,37 +30,31 @@ do
 			break
 			;;
 		-h|--htpc)
-			sudo $modules_dir/htpcmanager.sh
+			_htpc_install
+			_htpc_postconfig
 			break
 			;;
 		-p|--plex)
-			sudo $modules_dir/plex.sh
+			_plex_install
 			break
 			;;
 		-s|--sonarr)
-			sudo cp -f $current_dir/configs/sonarr/nzbdrone /etc/init.d/
-			sudo $modules_dir/sonarr.sh
-            sudo cp -f $current_dir/configs/sonarr/config.xml /root/.config/NzbDrone/
+			_sonarr_install
+			_sonarr_postconfig
 			break
 			;;
 		-c|--couchpotato)
             _couchpotato_install
             _couchpotato_postconfig
-			#sudo cp -f $current_dir/configs/couchpotato/couchpotato /etc/default/
-			#sudo $modules_dir/couchpotato.sh
 			break
 			;;
 		-n|--nzbget)
-            sudo cp -f $current_dir/configs/nzbget/nzbget /etc/init.d/
-			sudo $modules_dir/nzbget.sh
+            _nzbget_install
 			break
 			;;
 		-a|--apache)
-			sudo $modules_dir/apache.sh
-            sudo cp -f $current_dir/configs/apache/default.conf /etc/apache2/sites-available/
-            sudo sed -i "s|`grep -i servername /etc/apache2/sites-available/default.conf | awk '{print $2}'`|${myip}|g" /etc/apache2/sites-available/default.conf
-            sudo a2ensite default.conf
-            sudo service apache2 reload
+			_apache_install
+			_apache_postconfig
 			break
 			;;
 		*)
