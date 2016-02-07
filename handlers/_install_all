@@ -7,7 +7,7 @@ function _install_all(){
 
 	## Install HTPC Manager
 	_htpc_install
-	_htpc_postconfig
+	#_htpc_postconfig
 
 	## Install Plex
 	_plex_install

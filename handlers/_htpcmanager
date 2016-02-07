@@ -28,6 +28,7 @@ function _htpc_install(){
 
 function _htpc_postconfig(){
     ## This is a hack for now. I cannot find where this setting is stored, so I'm substituting the default value in the python launcher script
-    ## Updates the web url root to /htpc
-    sudo sed -i "s|`grep -e "--webdir" /opt/HTPCManager/Htpc.py | awk '{print $2}'`|default=\"/htpc\",|g" /opt/HTPCManager/Htpc.py
+    ## Updates the web url root to /htpc 
+    ## Cannot get this to work. This will have to be manually done in the GUI for now.
+    #sed -i "s|`grep -e "--webdir" /opt/HTPCManager/Htpc.py | awk '{print $2}'`|default=\"/htpc\",|g" /opt/HTPCManager/Htpc.py
 }
