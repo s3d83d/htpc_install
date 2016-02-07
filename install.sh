@@ -31,7 +31,7 @@ do
 			;;
 		-h|--htpc)
 			_htpc_install
-			_htpc_postconfig
+			#_htpc_postconfig
 			break
 			;;
 		-p|--plex)
