@@ -21,7 +21,7 @@ Choose how you would like to install your applications.
 To run, you can try the following scenarios:
 
 | Command | Result |
-| ------- | ------ |
+| :------ | :----- |
 | sudo ./install.sh -A | Will install all applications |
 | sudo ./install.sh -p | Plex will be installed |
 | sudo ./install.sh -s | Sonarr will be installed |
@@ -32,7 +32,7 @@ To run, you can try the following scenarios:
 If you chose to install all applications, apache will proxy your connections making the connnection urls the following:
 
 | Application | URL |
-| ----------- | --- |
+| :---------- | :-- |
 | *HTPC Manager | http://ip.address/htpc |
 | Plex | http://ip.address/web |
 | Sonarr | http://ip.address/nzbdrone |
@@ -44,7 +44,7 @@ If you chose to install all applications, apache will proxy your connections mak
 If you install applications singularly and/or you do not install apache, you can make connection to these urls:
 
 | Application | URL |
-| ----------- | --- |
+| :---------- | :-- |
 | HTPC Manager | http://ip.address:8085/htpc |
 | Plex | http://ip.address:32400/web |
 | Sonarr | http://ip.address:8989/nzbdrone |
@@ -54,6 +54,6 @@ If you install applications singularly and/or you do not install apache, you can
 NZBGet ships with a default username and password. You can change it after logging in.
 
 | Username | Password |
-| -------- | -------- |
+| :------- | :------- |
 | nzbget | tegbzn6789 |
 
