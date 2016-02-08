@@ -6,17 +6,25 @@ function _sick_install(){
     apt-get install unrar -y
 
     ## Download SickRage
-    git clone git://github.com/echel0n/SickRage.git sickrage
+    git clone git://github.com/echel0n/SickRage.git /opt/sickrage
 
     ## Add init script to system
-    cp -f /opt/sickrage/init.ubuntu /etc/init.d/sickrage
+    cp -f /opt/sickrage/runscripts/init.ubuntu /etc/init.d/sickrage
 
     ## Copy default configuration to system
-    cp -f configs/sickrage/sickrage /etc/default/sickbeard
-
-    ## Set permissions on file
-    chmod 755 /etc/init.d/sickbeard
+    cp -f configs/sickrage/sickrage /etc/default/sickrage
 
     ## Add sickrage to system startup
-    update-rc.d sickbeard defaults
+    update-rc.d sickrage defaults
+}
+
+function _sick_postconfig(){
+    ## Start SickRage to create config.ini
+    service sickrage start
+
+    ## Stop SickRage to allow config.ini editing
+    service sickrage stop
+
+    ## Update web root
+    sed -i "s|`grep ^web_root /opt/sickrage/config.ini`|web_root = /sickrage|g" /opt/sickrage/config.ini
 }
