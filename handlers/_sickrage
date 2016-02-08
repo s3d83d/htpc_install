@@ -6,7 +6,7 @@ function _sick_install(){
     apt-get install unrar -y
 
     ## Download SickRage
-    git clone git://github.com/echel0n/SickRage.git /opt/sickrage
+    git clone git://github.com/SiCKRAGE/SickRage.git /opt/sickrage
 
     ## Add init script to system
     cp -f /opt/sickrage/runscripts/init.ubuntu /etc/init.d/sickrage
