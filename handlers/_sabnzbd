@@ -8,7 +8,7 @@ function _sab_install(){
     apt-get update
 
     ## Insall Sabnzbd
-    apt-get install sabnzbdplus
+    apt-get install sabnzbdplus -y
 
     ## Add Sabnzbd defaults to system
     cp -f configs/sabnzbd/sabnzbdplus /etc/default   
