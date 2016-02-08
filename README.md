@@ -25,6 +25,7 @@ To run, you can try the following scenarios:
 | sudo ./install.sh -A | Will install all applications |
 | sudo ./install.sh -p | Plex will be installed |
 | sudo ./install.sh -s | Sonarr will be installed |
+| sudo ./install.sh -S | SickRage will be installed |
 | sudo ./install.sh -c | CouchPotato will be installed |
 | sudo ./install.sh -n | NZBGet will be installed |
 | sudo ./install.sh -a | Apache will be installed |
@@ -48,6 +49,7 @@ If you install applications singularly and/or you do not install apache, you can
 | HTPC Manager | http://ip.address:8085/htpc |
 | Plex | http://ip.address:32400/web |
 | Sonarr | http://ip.address:8989/nzbdrone |
+| SickRage | http://ip.address:8081/sickrage |
 | CouchPotato | http://ip.address:5050/movies |
 | NZBget | http://ip.address:6789//nzbget |
 
