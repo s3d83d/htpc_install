@@ -1,4 +1,4 @@
 USER=root
-CONFIG=/opt/sabnzbdplus/config.ini
+CONFIG=/opt/sabnzbd/config.ini
 HOST=0.0.0.0
 PORT=8080

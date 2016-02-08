@@ -14,5 +14,8 @@ function _sab_install(){
     cp -f configs/sabnzbd/sabnzbdplus /etc/default
 
     ## Move sabnzbd folder
-    mv ~/.sabnzbdplus /opt/sabnzbdplus
+    mv /root/.sabnzbd /opt/sabnzbd
+
+    ## Create config file
+    cp /opt/sabnzbd/sabnzbd.ini /opt/sabnzbd/config.ini
 }
