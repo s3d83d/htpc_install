@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# test
 ## Variables
 if [ -f /etc/os-release ]; then
 	os_fam=`cat /etc/os-release | grep -ie "\<name\>" | awk -F"\"" '{print $2}'`
@@ -49,8 +49,8 @@ do
 			break
 			;;
 		-c|--couchpotato)
-            		_couchpotato_install
-            		_couchpotato_postconfig
+            _couchpotato_install
+            _couchpotato_postconfig
 			break
 			;;
 		-n|--nzbget)

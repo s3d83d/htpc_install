@@ -7,9 +7,13 @@ function _sab_install(){
     ## Update repos
     apt-get update
 
+    ## Insall Sabnzbd
+    apt-get install sabnzbdplus -y
+
+    ## Stop sabnzbd
+    service sabnzbdplus stop
+
     ## Add Sabnzbd defaults to system
     cp -f configs/sabnzbd/sabnzbdplus /etc/default
 
-    ## Insall Sabnzbd
-    apt-get install sabnzbdplus -y
 }
