@@ -27,4 +27,7 @@ function _sick_postconfig(){
 
     ## Update web root
     sed -i "s|`grep ^web_root /opt/sickrage/config.ini`|web_root = /sickrage|g" /opt/sickrage/config.ini
+
+    ## Start SickRage
+    service sickrage start
 }
