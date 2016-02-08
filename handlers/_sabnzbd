@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function _sab_install(){
+    ## Add Sabnzbd repo
+    add-apt-repository ppa:jcfp/ppa -y
+
+    ## Update repos
+    apt-get update
+
+    ## Insall Sabnzbd
+    apt-get install sabnzbdplus
+
+    ## Add Sabnzbd defaults to system
+    cp -f configs/sabnzbd/sabnzbdplus /etc/default   
+}

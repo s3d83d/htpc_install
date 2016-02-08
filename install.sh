@@ -19,7 +19,7 @@ _verify_root
 _verify_os
 
 ### Script Begin ###
-params="$(getopt -o AhpsScna -l all,htpc,plex,sonarr,sickrage,couchpotato,nzbget,apache --name "$0" -- "$@")"
+params="$(getopt -o AhpsScnNa -l all,htpc,plex,sonarr,sickrage,couchpotato,nzbget,sabnzbd,apache --name "$0" -- "$@")"
 eval set -- "$params"
 
 while true
@@ -58,6 +58,11 @@ do
             _nzbget_postconfig
 			break
 			;;
+		-N|--sabnzbd)
+			_sab_install
+			#_sab_postconfig
+			break
+			;;
 		-a|--apache)
 			_apache_install
 			_apache_postconfig
@@ -70,8 +75,6 @@ do
 	esac
 done
 
-#_post_config
-
-#sudo reboot
+sudo reboot
 
 ### Script End ###
