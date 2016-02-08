@@ -1,0 +1,4 @@
+SB_USER=root
+SB_HOME=/opt/sickrage/
+SB_DATA=/opt/sickrage/
+SB_OPTS=–config=/opt/sickrage/config.ini

@@ -19,7 +19,7 @@ _verify_root
 _verify_os
 
 ### Script Begin ###
-params="$(getopt -o Ahpscna -l all,htpc,plex,sonarr,couchpotato,nzbget,apache --name "$0" -- "$@")"
+params="$(getopt -o AhpsScna -l all,htpc,plex,sonarr,sickrage,couchpotato,nzbget,apache --name "$0" -- "$@")"
 eval set -- "$params"
 
 while true
@@ -41,6 +41,11 @@ do
 		-s|--sonarr)
 			_sonarr_install
 			_sonarr_postconfig
+			break
+			;;
+		-S|--sickrage)
+			_sick_install
+			_sick_postconfig
 			break
 			;;
 		-c|--couchpotato)
