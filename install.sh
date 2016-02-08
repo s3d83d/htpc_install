@@ -75,6 +75,6 @@ do
 	esac
 done
 
-sudo reboot
+#sudo reboot
 
 ### Script End ###

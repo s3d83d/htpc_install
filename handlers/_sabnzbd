@@ -11,5 +11,8 @@ function _sab_install(){
     apt-get install sabnzbdplus -y
 
     ## Add Sabnzbd defaults to system
-    cp -f configs/sabnzbd/sabnzbdplus /etc/default   
+    cp -f configs/sabnzbd/sabnzbdplus /etc/default
+
+    ## Move sabnzbd folder
+    mv ~/.sabnzbdplus /opt/sabnzbdplus
 }
