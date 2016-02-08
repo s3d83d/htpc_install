@@ -49,13 +49,13 @@ do
 			break
 			;;
 		-c|--couchpotato)
-            _couchpotato_install
-            _couchpotato_postconfig
+            		_couchpotato_install
+            		_couchpotato_postconfig
 			break
 			;;
 		-n|--nzbget)
-            _nzbget_install
-            _nzbget_postconfig
+        		_nzbget_install
+            		_nzbget_postconfig
 			break
 			;;
 		-N|--sabnzbd)
