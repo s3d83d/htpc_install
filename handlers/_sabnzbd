@@ -15,5 +15,4 @@ function _sab_install(){
 
     ## Add Sabnzbd defaults to system
     cp -f configs/sabnzbd/sabnzbdplus /etc/default
-
 }

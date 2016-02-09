@@ -1,11 +1,14 @@
 #!/bin/bash
-# test
+
 ## Variables
 if [ -f /etc/os-release ]; then
 	os_fam=`cat /etc/os-release | grep -ie "\<name\>" | awk -F"\"" '{print $2}'`
 	os_ver=`cat /etc/os-release | grep -ie "\<version\>" | awk -F"\"" '{print $2}' | awk '{print $1}'`
 fi
 export current_dir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
+declare -a apps
+apps=()
 
 ## Source all of the handlers
 for i in `ls handlers`
@@ -32,35 +35,42 @@ do
 		-h|--htpc)
 			_htpc_install
 			#_htpc_postconfig
+            apps+=("htpc")
 			break
 			;;
 		-p|--plex)
 			_plex_install
+            apps+=("plex")
 			break
 			;;
 		-s|--sonarr)
 			_sonarr_install
 			_sonarr_postconfig
+            apps+=("sonarr")
 			break
 			;;
 		-S|--sickrage)
 			_sick_install
 			_sick_postconfig
+            apps+=("sickrage")
 			break
 			;;
 		-c|--couchpotato)
             _couchpotato_install
             _couchpotato_postconfig
+            apps+=("couchpotato")
 			break
 			;;
 		-n|--nzbget)
-        		_nzbget_install
-            		_nzbget_postconfig
-			break
+        	_nzbget_install
+            _nzbget_postconfig
+            apps+=("nzbget")			
+            break
 			;;
 		-N|--sabnzbd)
 			_sab_install
 			#_sab_postconfig
+            apps+=("sabnzbd")
 			break
 			;;
 		-a|--apache)

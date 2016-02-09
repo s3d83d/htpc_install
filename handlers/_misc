@@ -14,13 +14,41 @@ function _verify_root(){
 
 function _verify_os(){
 	if [ "${os_fam,,}" != 'ubuntu' ] && [ "${os_ver}" != '14.04']; then
-	read -p "This script was tested on Ubuntu 14.04. Your version [${os_fam} ${os_ver}] has not been verified to work with this script. Do you wish to continue? (y/n)" y
+		read -p "This script was tested on Ubuntu 14.04. Your version [${os_fam} ${os_ver}] has not been verified to work with this script. Do you wish to continue? (y/n)" y
 		case $yn in
-			[Yy]* ) break;;
+			[Yy]* ) 
+				break
+				;;
 			[Nn]* )
 				exit 1
-			;;
-			* ) echo "Plese answer y or n.";;
+				;;
+			* ) 
+				echo "Plese answer y or n."
+				;;
 		esac
 	fi
+}
+
+function _post_config(){
+	read -p "\nWould you like to configure services to run as a different user? (y/n)[n]" n
+	case $yn in
+	[Yy]* ) 
+		read -p "Please specify a user:" 		
+		_change_user
+		break
+		;;
+	[Nn]* )
+		exit 0
+		;;
+	* ) 
+		echo "Please anser y or n."
+		;;
+	esac
+}
+
+function _change_user(){
+	for i in ${apps[@]}
+	do
+		echo $i
+	done
 }
