@@ -1,5 +1,5 @@
 #!/bin/bash
-# hello john
+
 ## Variables
 if [ -f /etc/os-release ]; then
 	os_fam=`cat /etc/os-release | grep -ie "\<name\>" | awk -F"\"" '{print $2}'`
